@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -22,9 +22,11 @@ app.use(bodyParser.json());
 // Routes
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
+const transactionRoutes = require('./routes/transaction');
 
 app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
+app.use('/transaction', transactionRoutes);
 
 // Start the server
 app.listen(PORT, () => {
